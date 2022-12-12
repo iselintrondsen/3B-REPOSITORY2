@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<!-- DOKUMENT INFORMASJON -->
+<html lang="en"><head>
+    <title>Gruppe oppgave - How We Roll</title>
+    <meta charset="utf-8">
+    <meta name="description" content="How We Roll">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+<!-- HEADER MED NAVIGASJONSBAR OG LOGO, HVIS DU TRYKKER PÅ DEN KOMMER DU TILBAKE TIL FREMSIDEN (INDEX) -->
+    <header>
+        <div class="logo">
+        <a href="index.html"><img src="images/uialogo1.jpg" height="60px" alt="UIA logo"></a>
+        <a href="index.html"><p>How We Roll</p></a>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Hjem</a>
+        <a href="kontaktinfo.html">Kontakt info</a>
+        <a href="møtereferat.html">Møte referat</a>
+        <a href="WEB-RAPPORT.html">WEB-RAPPORT</a>
+        <a href="kartlegging.html">Kartlegging</a>
+        <a href="kartleggingskjema.html">Kartlegging-skjema</a>
+      </nav>
+    </header>
+    <main>
+  <!-- FREMSIDE TOP SEKSJON PRESENTASJON AV GRUPPE OG PROSJEKT-->
+      <section class="top-section">
+        <div class="title-text">
+          <h1>Kartlegging<br><p>Gruppens - kunnskaps  - ferdigheter</p></h1>
+        </div>
+     </section>
+    </main>
+<!-- SKJEMA SOM VISER DATA HENTET FRA WEB-FORM -->
+
+  
+<!-- SETT CANVAS 500X800 -->
+  <section class="canvas">
+    <canvas id="report2"><canvas></canvas>
+<!-- JAVASCRIPT HENTER CANVAS -->        
+    <script>
+       
+
+           var canvas = document.getElementById('report2');
+            canvas.width  = 810;
+            canvas.height = 500;
+            var context = canvas.getContext('2d');
+/* 1. Her legger gruppemedlemmene inn sin trx id for å vise frem sine data  */
+/* 2. Tekst på canvas ulike ytterpunkt */
+           fetch("https://bacit.info/hwr/20221212115007-d1e5d314a0614b41d38e1b137dfcdcd4.json", {cache: 'no-cache'})
+            .then(response => response.json())
+            .then(data => {
+              context.font = '15px Arial';
+              context.fillStyle = "#000000";
+              context.fillText('Git og Github 1-10', 0, 32);
+              
+              context.fillText('Samarbeidsevne 1-10', 0, 72);
+            
+              context.fillText('HTML5 og CSS', 0, 112);
+              
+              context.fillText('Læringsevne 1-10', 0, 152);
+              
+              context.fillText('Canvas API 1-10', 0, 192);
+              
+              context.fillText('JavaScript 1-10', 0, 232);
+              
+              context.fillText('Skriving 1-10', 0, 272);
+             
+              context.fillText('Design 1-10', 0, 312);
+              
+
+
+              /* Kode som viser hvilken farge hvert enkelt gruppemedlem bruker til å vise frem sine data */
+              // DENNE KODE BLOKKEN MÅ GJENTAS VED HVERT GRUPPE MEDLEM, FARGE, NAVN OG PLASSERING AV SIRKEL ENDRES
+              context.font = '20x Arial';
+              context.fillStyle = "#000000";
+              context.fillText('Iselin', 750, 30);
+              var X = 720;
+              var Y = 26;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "red";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              // Git og github -- Tegn strek
+              // DISSE LINJENE TRENGER BARE Å TEGNES EN GANG
+              context.beginPath();
+              context.moveTo(200,30);
+              context.lineTo(400,30);
+
+              // Samarbeidsevne -- Tegn strek
+              context.moveTo(200,70);
+              context.lineTo(400,70);
+              context.stroke();
+
+              // HTML og CSS -- Tegn strek
+              context.moveTo(200,110);
+              context.lineTo(400,110);
+              context.stroke();
+
+              // Læringsevne-- Tegn strek
+              context.moveTo(200,150);
+              context.lineTo(400,150);
+              context.stroke();
+
+              // CANVAS-- Tegn strek
+              context.moveTo(200,190);
+              context.lineTo(400,190);
+              context.stroke();
+
+              // JavaScript-- Tegn strek
+              context.moveTo(200,230);
+              context.lineTo(400,230);
+              context.stroke();
+
+              // Skriving-- Tegn strek
+              context.moveTo(200,270);
+              context.lineTo(400,270);
+              context.stroke();
+
+              // Desing -- Tegn strek
+              context.moveTo(200,310);
+              context.lineTo(400,310);
+              context.stroke();
+
+
+              // Git og github -- Tegn sirkel
+              // Sirkel må tegnes for å vise riktig data, dette må gjøres på hvert spørsmål/svar. Canvas er satt til å starte på 200 + data fra web form. 
+              var X = 200 + parseInt(data.github, 10); //Henter data fra web-form
+              var Y = 30;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "red";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              // Samarbeidsevne -- Tegn sirkel
+              var X = 200 + parseInt(data.samarbeidsevne, 10); //Henter data fra web-form
+              var Y = 70;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "red";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              // HTML og CSS -- Tegn sirkel
+              var X = 200 + parseInt(data.kode, 10); //Henter data fra web-form
+              var Y = 110;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "red";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              // Læringevne -- Tegn sirkel
+              var X = 200 + parseInt(data.læringsevne, 10); //Henter data fra web-form
+              var Y = 150;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "red";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              // CANVAS -- Tegn sirkel
+              var X = 200 + parseInt(data.canvas, 10); //Henter data fra web-form
+              var Y = 190;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "red";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              // JavaScript-- Tegn sirkel
+              var X = 200 + parseInt(data.js, 10); //Henter data fra web-form
+              var Y = 230;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "red";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              // Skriving-- Tegn sirkel
+              var X = 200 + parseInt(data.skriving, 10); //Henter data fra web-form
+              var Y = 270;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "red";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              // Design -- Tegn sirkel
+              var X = 200 + parseInt(data.design, 10); //Henter data fra web-form
+              var Y = 310;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "red";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+            });
+
+             
+
+
+           /*  fetch("https://bacit.info/hwr/20221109092623-11a3b4ac2692d31bd56812ffcee3da04.json", {cache: 'no-cache'})
+            .then(response => response.json())
+            .then(data => {
+
+
+              
+              context.font = '15px Arial';
+              context.fillStyle = "#000000";
+              context.fillText('Victoria', 750, 60);
+              var X = 720;
+              var Y = 56;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "lightgreen";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.github, 10);
+              var Y = 30;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "lightgreen";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+             
+              var X = 200 + parseInt(data.samarbeidsevne, 10);
+              var Y = 70;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "lightgreen";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.kode, 10);
+              var Y = 110;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "lightgreen";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.lærigsevne, 10);
+              var Y = 150;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "lightgreen";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.canvas, 10);
+              var Y = 190;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "lightgreen";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.js, 10);
+              var Y = 230;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "lightgreen";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.skriving, 10);
+              var Y = 270;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "lightgreen";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.design, 10);
+              var Y = 310;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "lightgreen";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+            });
+
+            
+
+            fetch("https://bacit.info/hwr/20221109190500-e0966bef7386a5f4daef838124b6ff1c.json", {cache: 'no-cache'})
+            .then(response => response.json())
+            .then(data => {
+
+
+              
+              context.font = '15px Arial';
+              context.fillStyle = "#000000";
+              context.fillText('Kristian', 750, 90);
+              var X = 720;
+              var Y = 85;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "blue";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.github, 10);
+              var Y = 30;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "blue";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.samarbeidsevne, 10);
+              var Y = 70;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "blue";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.kode, 10);
+              var Y = 110;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "blue";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.læringsevne, 10);
+              var Y = 150;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "blue";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.canvas, 10);
+              var Y = 190;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "blue";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.js, 10);
+              var Y = 230;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "blue";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.skriving, 10);
+              var Y = 270;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "blue";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+             
+              var X = 200 + parseInt(data.design, 10);
+              var Y = 310;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "blue";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+            });
+
+            fetch("https://bacit.info/hwr/20221109190531-3fab6cdeca55793fece1923ede91c118.json", {cache: 'no-cache'})
+            .then(response => response.json())
+            .then(data => {
+
+
+              
+              context.font = '15px Arial';
+              context.fillStyle = "#000000";
+              context.fillText('Amanda', 750, 120);
+              var X = 720;
+              var Y = 115;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "purple";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.github, 10);
+              var Y = 30;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "purple";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.samarbeidsevne, 10);
+              var Y = 70;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "purple";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+             
+              var X = 200 + parseInt(data.kode, 10);
+              var Y = 110;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "purple";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.læringsevne, 10);
+              var Y = 150;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "purple";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.canvas, 10);
+              var Y = 190;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "purple";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.js, 10);
+              var Y = 230;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "purple";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.skriving, 10);
+              var Y = 270;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "purple";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.design, 10);
+              var Y = 310;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "purple";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+            });
+  
+
+            fetch("https://bacit.info/hwr/20221109190556-14dd70f0cafdfd4d6d730dca6e8212a4.json", {cache: 'no-cache'})
+            .then(response => response.json())
+            .then(data => {
+
+
+              
+              context.font = '15px Arial';
+              context.fillStyle = "#000000";
+              context.fillText('Samuel', 750, 150);
+              var X = 720;
+              var Y = 145;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "#fe019a";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.github, 10);
+              var Y = 30;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "#fe019a";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.samarbeidsevne, 10);
+              var Y = 70;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "#fe019a";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.kode, 10);
+              var Y = 110;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "#fe019a";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.læringsevne, 10);
+              var Y = 150;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "#fe019a";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.canvas, 10);
+              var Y = 190;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "#fe019a";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.js, 10);
+              var Y = 230;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "#fe019a";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.skriving, 10);
+              var Y = 270;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "#fe019a";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.design, 10);
+              var Y = 310;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "#fe019a";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+            });
+
+            fetch("https://bacit.info/hwr/20221109190619-186493d9afb043524bd053381e1f7484.json", {cache: 'no-cache'})
+            .then(response => response.json())
+            .then(data => {
+
+
+              
+              context.font = '15px Arial';
+              context.fillStyle = "#000000";
+              context.fillText('Casper', 750, 180);
+              var X = 720;
+              var Y = 175;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "yellow";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.github, 10);
+              var Y = 30;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "yellow";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.samarbeidsevne, 10);
+              var Y = 70;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "yellow";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.kode, 10);
+              var Y = 110;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "yellow";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.læringsevne, 10);
+              var Y = 150;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "yellow";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.canvas, 10);
+              var Y = 190;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "yellow";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.js, 10);
+              var Y = 230;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "yellow";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.skriving, 10);
+              var Y = 270;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "yellow";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+
+              
+              var X = 200 + parseInt(data.design, 10);
+              var Y = 310;
+              var R = 5;
+              context.beginPath();
+              context.arc(X, Y, R, 0, 2*Math.PI, false);
+              context.fillStyle = "yellow";
+              context.fill();
+              context.lineWidth = 1;
+              context.strokeStyle = "black";
+              context.stroke();
+              });
+
+             
+ */
+    </script>
+    
+  </section>
