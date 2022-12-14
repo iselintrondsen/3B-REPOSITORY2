@@ -1,5 +1,5 @@
 /***************************** TEKST OG LINKER ************************/
-
+/* OVERSKRIFTER OG AVSNITT */
 h1 {
   font-family: 'Montserrat', sans-serif;
   color: #2E2E2E;
@@ -61,6 +61,7 @@ p {
 
 }
 
+/* KNAPPER OG MOUSEOVER AKTIVITET */
 .card p {
   margin-bottom: 0;
   text-align: left;
@@ -100,7 +101,7 @@ nav a {
   font-weight: bold;
 }
 
-/********************** STYLER FORM TAG ************************/
+/********************** STYLER "FORM" ************************/
 
 
 /*Chrome*/
@@ -129,7 +130,6 @@ nav a {
   }
 
 }
-
 
   
 label {
@@ -210,15 +210,8 @@ footer {
   height: 20vh;
   background-color: #F7F7F7;
 
-  }
+}
 
-.special-event-sections {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    align-self: stretch;
-    padding-top: 30px;
-  }
 
 .bottom-feature-section  {
   background-color: #ffffff;
