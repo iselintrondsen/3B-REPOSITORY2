@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TITTEL</title>
+   </head>
+<body>
+
+
+
+<script>
+//Eksempel på test, fra forelesning til Janis
+function innerText() {
+  pEl = document.createElement("p");
+  pEl.setAttribute("id", "navn");
+  pEl.innerText = '{"navn": "Arild"}';
+  //return pEl.outerHTML;
+  return pEl;
+}
+</script>
+
+<script>
+// Definerer tester
+function testInnerText() {
+  forventetInnerText = '<p id="navn">{"navn": "Arild"}</p>';
+  iText = innerText();
+  console.assert(forventetInnerText === iText.outerHTML, { forventetInnerText, iText });
+}
+
+// Kjører tester
+testInnerText();
+document.body.appendChild(innerText());
+</script>
+
+
+</body>
+</html>
