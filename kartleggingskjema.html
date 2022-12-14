@@ -84,7 +84,7 @@
               context.fillStyle = "red";
               context.fill();
               context.lineWidth = 1;
-              context.strokeStyle = "black";
+              context.strokeStyle = "grey";
               context.stroke();
 
               // Git og github -- Tegn strek
@@ -130,7 +130,7 @@
 
 
               // Git og github -- Tegn sirkel
-              // Sirkel må tegnes for å vise riktig data, dette må gjøres på hvert spørsmål/svar. Canvas er satt til å starte på 200 + data fra web form. 
+              // Sirkel må tegnes for å vise riktig data, dette må gjøres på hvert spørsmål/svar. Canvas er satt til å starte på 200 + data fra kartlegging 
               var X = 200 + parseInt(data.github, 10); //Henter data fra web-form
               var Y = 30;
               var R = 5;
@@ -227,8 +227,10 @@
               context.stroke();
             });
 
-             
 
+
+
+            // Victoria sine data
 
             fetch("https://bacit.info/hwr/20221212121526-cd12d4db2e44d359bf8e50c56b6307be.json", {cache: 'no-cache'})
             .then(response => response.json())
@@ -347,7 +349,8 @@
               context.stroke();
             });
 
-            
+
+            // Kristian sine data
 
             fetch("https://bacit.info/hwr/20221212124919-779dc1f3fea8fa4cc3ff12d6f2a7f993.json", {cache: 'no-cache'})
             .then(response => response.json())
@@ -466,6 +469,9 @@
               context.stroke();
             });
 
+
+            // Amanda sine data
+
             fetch("https://bacit.info/hwr/20221212122149-d3d8b328707c8197dae8618d6dc286de.json", {cache: 'no-cache'})
             .then(response => response.json())
             .then(data => {
@@ -582,6 +588,8 @@
               context.strokeStyle = "black";
               context.stroke();
             });
+
+            // Samuel sine data
   
 
             fetch("https://bacit.info/hwr/20221212121254-7be03add9c89d9f59efde37b273b3f36.json", {cache: 'no-cache'})
@@ -701,11 +709,11 @@
               context.stroke();
             });
 
-            fetch("https://bacit.info/hwr/20221109190619-186493d9afb043524bd053381e1f7484.json", {cache: 'no-cache'})
+            // Casper sine data
+          
+            fetch("https://bacit.info/hwr/20221214085834-2730a430af7bcc6e831bab863ab6278f.json", {cache: 'no-cache'})
             .then(response => response.json())
             .then(data => {
-
-
               
               context.font = '15px Arial';
               context.fillStyle = "#000000";

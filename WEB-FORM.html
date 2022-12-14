@@ -127,10 +127,12 @@
     <div>
 </div>
 
-<!-- JavaScript som tar i mot og returnerer svar i Json format- kode hentet fra developer mozilla.org-->
+<!-- JavaScript som tar i mot og returnerer svar i Json format- kode hentet fra developer mozilla.org. Ved hjelp av POSTDATA funksjon, som bruker den 
+innebygde fetch funksjonen i JavaScript til å kommunisere med den eksterne serveren. Data blir da sendt ved hjelp av HTTP POST. Hva slags data
+som sendes og hvilket format det er i ligger i header.-->
 
 <script>
-async function postData(url = '', data = {}) {
+async function postData(url = '', data = {}) {  //Asynkron funksjon så resten av koden ikke venter på nettverket
        
        const response = await fetch(url, {
            method: 'POST', 
@@ -138,18 +140,19 @@ async function postData(url = '', data = {}) {
            cache: 'no-cache',
            credentials: 'same-origin', 
            headers: {
-               'Content-Type': 'application/json',
+               'Content-Type': 'application/json', // Forteller hvilken type data som blir sendt til servere
                 
            },
            redirect: 'follow', 
            referrerPolicy: 'no-referrer', 
-           body: JSON.stringify(data) 
+           body: JSON.stringify(data)  // Konverterer verdier til JSON tekst-strenge
        });
        return response.json(); 
    }
+// Ekstern server
 
    function handleSubmit(event) {
-        event.preventDefault();
+        event.preventDefault(); // Forhindrer browser i å håndtere submit event, uden denne linjen ville resten av koden ikke kjører
         const data = new FormData(event.target);
         const formJSON = Object.fromEntries(data.entries());
         const results = document.querySelector('pre');
@@ -159,9 +162,21 @@ async function postData(url = '', data = {}) {
            document.querySelector("#json-api").innerHTML = "Open JSON data"
            document.querySelector("#json-api").href = `https://bacit.info/hwr/${data.time}-${data.trxid}.json`
         });
+
    }
-   const form = document.querySelector('form');
-   form.addEventListener('submit', handleSubmit);
+   const form = document.querySelector('form'); // Finner form i HTML og legger dette inn i js kontekst,
+   form.addEventListener('submit', handleSubmit); // Forteller derretter Javascript fortolkeren hvordan et 'submit' event skal håndteres.
+
+   function responseTest(input) { // TEST - Har vi har motatt timestamp og trxid
+            if (input.trxid) {         // Sann hvis ja
+                console.log("Timestamp: " + input.time);
+                console.log("Transaksjons id: " + input.trxid);
+            }
+            else {
+                console.log("Ingen transaksjons id :(");
+                postData.catch();
+            }
+        }
 
 </script>
 </body>
